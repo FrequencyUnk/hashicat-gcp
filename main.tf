@@ -47,11 +47,6 @@ resource "google_compute_instance" "hashicat" {
   name         = "${var.prefix}-hashicat"
   zone         = "${var.region}-b"
   machine_type = var.machine_type
- 
-  mandatory_labels = [
-  "department",
-  "billable",
-  ]
   
   boot_disk {
     initialize_params {
@@ -69,7 +64,8 @@ resource "google_compute_instance" "hashicat" {
     ssh-keys = "ubuntu:${chomp(tls_private_key.ssh-key.public_key_openssh)} terraform"
   }
 
-  tags = ["http-server"]
+  tags = ["http-server","department",
+  "billable"]
   
   labels = {
     name = "hashicat"
