@@ -66,11 +66,11 @@ resource "google_compute_instance" "hashicat" {
 
   tags = ["http-server"]
   
-#  labels = {
-#    name = "hashicat"
-#    department = "sales" 
-#    billable = "true"
-#  }
+  labels = {
+    name = "hashicat"
+    department = "sales" 
+    billable = "true"
+  }
 }
 
 resource "null_resource" "configure-cat-app" {
