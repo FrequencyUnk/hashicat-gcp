@@ -70,8 +70,10 @@ resource "google_compute_instance" "hashicat" {
 #    name = "hashicat"
 #  }
   
-  labels = ["department", "billable"]
-  
+  labels = {
+    department = "sales" 
+    billable = "true"
+  }
 }
 
 resource "null_resource" "configure-cat-app" {
