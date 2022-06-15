@@ -48,6 +48,12 @@ resource "google_compute_instance" "hashicat" {
   zone         = "${var.region}-b"
   machine_type = var.machine_type
 
+  tags = {
+    name = "${var.prefix}-hashicat-instance"
+    department = "devops team"
+    billable = "true"
+  }
+  
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-1804-lts"
@@ -64,12 +70,7 @@ resource "google_compute_instance" "hashicat" {
     ssh-keys = "ubuntu:${chomp(tls_private_key.ssh-key.public_key_openssh)} terraform"
   }
 
-#  tags = ["http-server"]
-  tags = {
-    Name = "${var.prefix}-hashicat-instance"
-    Department = "devops team"
-    Billable = "true"
-  }
+  #tags = ["http-server"]
   
   labels = {
     name = "hashicat"
