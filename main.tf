@@ -49,9 +49,8 @@ resource "google_compute_instance" "hashicat" {
   machine_type = var.machine_type
   
   tags = {
-    Name = ["${var.prefix}-hashicat-instance"]
-     Department = ["devops team"]
-     Billable = ["true"]
+    Department = ["devops team"]
+    Billable = ["true"]
   }
   
   boot_disk {
@@ -70,7 +69,7 @@ resource "google_compute_instance" "hashicat" {
     ssh-keys = "ubuntu:${chomp(tls_private_key.ssh-key.public_key_openssh)} terraform"
   }
 
-  #tags = ["http-server"]
+  tags = ["http-server"]
   
   labels = {
     name = "hashicat"
